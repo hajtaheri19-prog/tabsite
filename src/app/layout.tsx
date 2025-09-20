@@ -16,7 +16,12 @@ export const metadata: Metadata = {
   description: 'دستیار هوشمند شما برای انواع محاسبات و تبدیل واحدها',
   manifest: '/manifest.json',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48', type: 'image/x-icon' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
   },
   openGraph: {
     title: 'تبدیلا | دستیار هوشمند شما',
@@ -45,6 +50,9 @@ export default function RootLayout({
       <head>
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+         <link rel="apple-touch-icon" href="/favicon.ico" />
+         <meta name="msapplication-TileImage" content="/favicon.ico" />
       </head>
       <body className={vazirmatn.variable}>
         <ThemeProvider
