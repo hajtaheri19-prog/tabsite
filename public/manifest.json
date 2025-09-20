@@ -1,0 +1,71 @@
+{
+  "name": "تبدیلا | دستیار هوشمند",
+  "short_name": "تبدیلا",
+  "description": "دستیار هوشمند شما برای انواع محاسبات و تبدیل واحدها",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#2a0e5c",
+  "scope": "/",
+  "lang": "fa",
+  "dir": "rtl",
+  "categories": ["utilities", "productivity", "tools"],
+  "icons": [
+    {
+      "src": "/lo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/lo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/lo.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "مبدل واحد",
+      "short_name": "مبدل واحد",
+      "description": "تبدیل واحدهای مختلف",
+      "url": "/#unit-converter",
+      "icons": [{ "src": "/lo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "مبدل ارز",
+      "short_name": "مبدل ارز", 
+      "description": "تبدیل ارزهای مختلف",
+      "url": "/#currency-converter",
+      "icons": [{ "src": "/lo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "محاسبه سن",
+      "short_name": "محاسبه سن",
+      "description": "محاسبه سن به شمسی و میلادی",
+      "url": "/#age-calculator",
+      "icons": [{ "src": "/lo.png", "sizes": "96x96" }]
+    }
+  ]
+}

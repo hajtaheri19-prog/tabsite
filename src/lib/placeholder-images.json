@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "logo",
+      "description": "The main logo for the Tabdila application, a purple circle icon.",
+      "imageUrl": "/lo.png",
+      "imageHint": "logo icon"
+    }
+  ]
+}
