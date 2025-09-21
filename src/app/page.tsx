@@ -113,11 +113,11 @@ export default async function Home() {
   const initialPrices = await fetchPrices();
     
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background relative">
       <ClientLoading />
       <Header />
-      <main className="p-2 sm:p-4 md:p-6 lg:p-8">
-        <div className="mx-auto max-w-screen-2xl px-2 sm:px-4">
+      <main className="main-content relative z-10">
+        <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-7xl">
 
           <AdvancedLivePrices initialData={initialPrices} />
 
@@ -269,7 +269,7 @@ export default async function Home() {
            </div>
         </div>
       </main>
-      <footer className="text-center p-4 sm:p-6 text-muted-foreground text-xs sm:text-sm font-body space-y-3 sm:space-y-4">
+      <footer className="relative z-10 text-center p-4 sm:p-6 text-muted-foreground text-xs sm:text-sm font-body space-y-3 sm:space-y-4 bg-background/95 backdrop-blur-sm">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
             <div className="inline-flex items-center justify-center gap-2">
                 <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
