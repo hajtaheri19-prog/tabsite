@@ -1,3 +1,77 @@
+# Robots.txt for Tabdila.ir - Persian Utility Tools Website
+# Generated for optimal SEO and search engine crawling
+
+# Allow all search engines to crawl the entire site
 User-agent: *
 Allow: /
+
+# Specific directives for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block access to sensitive or unnecessary files
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.map$
+
+# Block access to development and build files
+Disallow: /.env
+Disallow: /.env.local
+Disallow: /.env.production
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /tsconfig.json
+Disallow: /next.config.mjs
+Disallow: /tailwind.config.ts
+Disallow: /postcss.config.mjs
+
+# Block access to documentation and development files
+Disallow: /docs/
+Disallow: /patches/
+Disallow: /src/
+Disallow: /components/
+Disallow: /lib/
+Disallow: /hooks/
+Disallow: /services/
+Disallow: /ai/
+
+# Block access to temporary and cache files
+Disallow: /.next/
+Disallow: /out/
+Disallow: /build/
+Disallow: /dist/
+Disallow: /.vercel/
+Disallow: /.git/
+
+# Block access to system files
+Disallow: /.DS_Store
+Disallow: /Thumbs.db
+Disallow: /desktop.ini
+
+# Allow access to important static files
+Allow: /favicon.ico
+Allow: /manifest.json
+Allow: /sw.js
+Allow: /workbox-*.js
+Allow: /lo.png
+Allow: /icon.ico
+
+# Sitemap location
 Sitemap: https://www.tabdila.ir/sitemap.xml
+
+# Additional sitemaps (if you have them)
+# Sitemap: https://www.tabdila.ir/sitemap-images.xml
+# Sitemap: https://www.tabdila.ir/sitemap-news.xml
