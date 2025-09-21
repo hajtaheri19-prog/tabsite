@@ -56,6 +56,7 @@ export default function RootLayout({
          <meta name="msapplication-TileImage" content="/favicon.ico" />
          <meta name="msapplication-TileColor" content="#2a0e5c" />
          <meta name="theme-color" content="#2a0e5c" />
+         <meta name="google-site-verification" content="a0CBqNHND-fQsNhWsJvkCKJ6bbepFSU_3MlL2jwKslY" />
       </head>
       <body className={vazirmatn.variable}>
         <ThemeProvider
