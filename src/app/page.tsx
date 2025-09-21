@@ -116,37 +116,37 @@ export default async function Home() {
     <div className="min-h-screen">
       <ClientLoading />
       <Header />
-      <main className="p-4 sm:p-6 lg:p-8">
-        <div className="mx-auto max-w-screen-2xl">
+      <main className="p-2 sm:p-4 md:p-6 lg:p-8">
+        <div className="mx-auto max-w-screen-2xl px-2 sm:px-4">
 
           <AdvancedLivePrices initialData={initialPrices} />
 
 
           {/* Toolbox Shortcuts */}
-          <div className="glass-effect rounded-3xl p-4 md:p-8 mb-10">
-             <h2 className="col-span-12 text-2xl font-display font-bold text-foreground mb-6 flex items-center gap-3 text-glow">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary/80 to-accent/80 rounded-xl flex items-center justify-center animate-pulse">
-                  <Wrench className="w-6 h-6 text-primary-foreground"/>
+          <div className="glass-effect rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-8 mb-6 sm:mb-10">
+             <h2 className="col-span-12 text-xl sm:text-2xl font-display font-bold text-foreground mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 text-glow">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary/80 to-accent/80 rounded-xl flex items-center justify-center animate-pulse">
+                  <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground"/>
               </div>
-              جعبه ابزار
+              <span className="text-ellipsis">جعبه ابزار</span>
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {toolCategories.map((category) => (
                 <div key={category.title}>
-                  <h3 className="text-lg font-semibold font-display text-foreground/90 mb-4 flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-br from-primary/70 to-accent/70 rounded-lg flex items-center justify-center">
+                  <h3 className="text-base sm:text-lg font-semibold font-display text-foreground/90 mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-primary/70 to-accent/70 rounded-lg flex items-center justify-center flex-shrink-0">
                       {category.icon}
                     </div>
-                    {category.title}
+                    <span className="text-ellipsis">{category.title}</span>
                   </h3>
-                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4">
                     {category.tools.map((tool) => {
                       const typedTool = tool as any;
                       const content = (
-                        <div className="glass-effect rounded-2xl p-4 w-full h-full flex flex-col items-center justify-center text-center gap-3 relative overflow-hidden">
-                          {typedTool.isWip && <Badge variant="secondary" className="absolute top-2 right-2 bg-yellow-400/20 text-yellow-600 border-none">بزودی</Badge>}
-                          {tool.icon}
-                          <span className="font-semibold text-sm text-foreground">{tool.title}</span>
+                        <div className="glass-effect rounded-xl sm:rounded-2xl p-2 sm:p-4 w-full h-full flex flex-col items-center justify-center text-center gap-2 sm:gap-3 relative overflow-hidden min-h-[80px] sm:min-h-[100px]">
+                          {typedTool.isWip && <Badge variant="secondary" className="absolute top-1 right-1 sm:top-2 sm:right-2 bg-yellow-400/20 text-yellow-600 border-none text-xs">بزودی</Badge>}
+                          <div className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0">{tool.icon}</div>
+                          <span className="font-semibold text-xs sm:text-sm text-foreground text-ellipsis leading-tight">{tool.title}</span>
                         </div>
                       );
                       if(typedTool.isWip) {
@@ -165,10 +165,10 @@ export default async function Home() {
           </div>
           
           {/* Tools Sections */}
-          <div className="space-y-12">
+          <div className="space-y-8 sm:space-y-12">
             {toolCategories.map((category) => (
-              <div key={`category-section-${category.title}`} className="space-y-6">
-                <h2 className="text-2xl font-bold font-display text-foreground text-glow border-r-4 border-primary pr-4">
+              <div key={`category-section-${category.title}`} className="space-y-4 sm:space-y-6">
+                <h2 className="text-xl sm:text-2xl font-bold font-display text-foreground text-glow border-r-4 border-primary pr-3 sm:pr-4">
                   {category.title}
                 </h2>
                 {category.tools.map((tool) => {
@@ -231,14 +231,14 @@ export default async function Home() {
           </div>
           
            {/* About Us Section */}
-           <div className="mt-12 glass-effect rounded-3xl p-6 md:p-8">
-             <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-right">
-                <div className="p-3 bg-gradient-to-br from-primary/80 to-accent/80 rounded-2xl inline-flex animate-pulse">
-                    <Info className="h-10 w-10 text-primary-foreground"/>
+           <div className="mt-8 sm:mt-12 glass-effect rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
+             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-right">
+                <div className="p-2 sm:p-3 bg-gradient-to-br from-primary/80 to-accent/80 rounded-2xl inline-flex animate-pulse flex-shrink-0">
+                    <Info className="h-8 w-8 sm:h-10 sm:w-10 text-primary-foreground"/>
                 </div>
                <div className='flex-grow'>
-                  <h3 className="text-xl font-semibold font-display text-foreground">درباره «تبدیلا»</h3>
-                  <p className="text-muted-foreground mt-2 leading-relaxed">
+                  <h3 className="text-lg sm:text-xl font-semibold font-display text-foreground">درباره «تبدیلا»</h3>
+                  <p className="text-muted-foreground mt-2 leading-relaxed text-sm sm:text-base">
                     «تبدیلا» فقط یک ابزار نیست؛ یک دستیار هوشمند برای تمام لحظاتی است که به محاسبات و تبدیلات سریع، دقیق و زیبا نیاز دارید. ما با وسواس، مجموعه‌ای از بهترین ابزارهای روزمره را در یک پلتفرم مدرن و چشم‌نواز گرد هم آورده‌ایم تا کار شما را آسان‌تر کنیم.
                   </p>
                </div>
@@ -246,46 +246,46 @@ export default async function Home() {
            </div>
            
            {/* Financial Support Section */}
-           <div className="mt-6 glass-effect rounded-3xl p-6 md:p-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div className="flex-grow flex items-center gap-6 text-center sm:text-right">
-                    <div className="p-3 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl inline-flex animate-pulse">
-                        <HeartHandshake className="h-10 w-10 text-white"/>
+           <div className="mt-4 sm:mt-6 glass-effect rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+                <div className="flex-grow flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-right">
+                    <div className="p-2 sm:p-3 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl inline-flex animate-pulse flex-shrink-0">
+                        <HeartHandshake className="h-8 w-8 sm:h-10 sm:w-10 text-white"/>
                     </div>
-                    <div>
-                        <h3 className="text-xl font-semibold font-display text-foreground">حمایت از توسعه «تبدیلا»</h3>
-                        <p className="text-muted-foreground mt-2">
+                    <div className="flex-grow">
+                        <h3 className="text-lg sm:text-xl font-semibold font-display text-foreground">حمایت از توسعه «تبدیلا»</h3>
+                        <p className="text-muted-foreground mt-2 text-sm sm:text-base">
                            اگر «تبدیلا» برایتان مفید بوده، با حمایت خود به رشد و پیشرفت آن کمک کنید. هر حمایتی، انرژی ما را برای ساخت ابزارهای بهتر دوچندان می‌کند.
                         </p>
                     </div>
                 </div>
-                 <a href="https://idpay.ir/tbdila" target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-pink-500 hover:bg-pink-600 text-white font-bold h-12 px-8 text-base shrink-0">
+                 <a href="https://idpay.ir/tbdila" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                    <Button className="bg-pink-500 hover:bg-pink-600 text-white font-bold h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base w-full sm:w-auto">
                         حمایت می‌کنم
-                        <ArrowLeft className="mr-2 h-5 w-5" />
+                        <ArrowLeft className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                     </Button>
                 </a>
             </div>
            </div>
         </div>
       </main>
-      <footer className="text-center p-6 text-muted-foreground text-sm font-body space-y-4">
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+      <footer className="text-center p-4 sm:p-6 text-muted-foreground text-xs sm:text-sm font-body space-y-3 sm:space-y-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
             <div className="inline-flex items-center justify-center gap-2">
-                <Globe className="w-5 h-5" />
-                <span>
+                <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="text-ellipsis">
                   توسعه داده شده توسط <a href="https://www.hosseintaheri.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground hover:underline">حسین طاهری</a>
                 </span>
             </div>
              <div className="inline-flex items-center justify-center gap-2">
-                <CalendarClock className="w-5 h-5" />
-                <span>
+                <CalendarClock className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="text-ellipsis">
                   آخرین بروزرسانی: شهریور 1404
                 </span>
             </div>
         </div>
-        <div className="inline-flex items-center justify-center gap-2 pt-2 border-t border-border/50 w-full max-w-lg mx-auto mt-4">
-            <p>
+        <div className="pt-2 border-t border-border/50 w-full max-w-lg mx-auto mt-2 sm:mt-4">
+            <p className="text-xs sm:text-sm leading-relaxed">
               تمام حقوق مادی و معنوی این وبسایت متعلق به مجموعه تبدیلا است.
             </p>
         </div>

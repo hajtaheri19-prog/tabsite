@@ -1,4 +1,3 @@
-'use server';
 /**
  * @fileOverview A flow to summarize long texts using an AI model.
  * - summarizeText - A function that takes a long text and returns a summary.
@@ -6,9 +5,7 @@
  * - SummarizeTextOutput - The return type for the summarizeText function.
  */
 
-import { ai } from '@/ai/genkit';
 import { z } from 'zod';
-import { headers } from 'next/headers';
 
 const SummarizeTextInputSchema = z.object({
   text: z.string().min(100, { message: 'متن برای خلاصه‌سازی باید حداقل ۱۰۰ کاراکتر باشد.' }).describe('The text to be summarized.'),
@@ -26,53 +23,41 @@ const RATE_LIMIT_COUNT = 3; // Max requests
 const RATE_LIMIT_WINDOW = 10 * 60 * 1000; // 10 minutes in milliseconds
 
 export async function summarizeText(input: SummarizeTextInput): Promise<SummarizeTextOutput> {
-  return summarizeTextFlow(input);
-}
+  // Rate limiting logic
+  const now = Date.now();
+  const ip = 'client'; // Simplified for client-side
 
-const prompt = ai.definePrompt({
-  name: 'summarizeTextPrompt',
-  input: { schema: SummarizeTextInputSchema },
-  output: { schema: SummarizeTextOutputSchema },
-  model: 'googleai/gemini-1.5-flash-latest',
-  prompt: `You are an expert text summarizer. Your task is to provide a concise and clear summary of the given text in Persian. Focus on the main points and key information.
+  const userRequests = (requestTracker.get(ip) || []).filter(
+    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW
+  );
 
-The user has provided the following text:
----
-{{{text}}}
----
-
-Please provide the summary in the 'summary' field of the output.`,
-});
-
-const summarizeTextFlow = ai.defineFlow(
-  {
-    name: 'summarizeTextFlow',
-    inputSchema: SummarizeTextInputSchema,
-    outputSchema: SummarizeTextOutputSchema,
-  },
-  async (input) => {
-    // Rate limiting logic
-    const headersList = await headers();
-    const ip = headersList.get('x-forwarded-for') || '127.0.0.1';
-    const now = Date.now();
-
-    const userRequests = (requestTracker.get(ip) || []).filter(
-      (timestamp) => now - timestamp < RATE_LIMIT_WINDOW
-    );
-
-    if (userRequests.length >= RATE_LIMIT_COUNT) {
-      throw new Error('شما به حداکثر تعداد درخواست مجاز (۳ بار در ۱۰ دقیقه) رسیده‌اید. لطفاً کمی صبر کنید.');
-    }
-
-    // Add current request timestamp
-    userRequests.push(now);
-    requestTracker.set(ip, userRequests);
-    
-    // Proceed with summarization
-    const { output } = await prompt(input);
-    if (!output) {
-      throw new Error('Failed to generate summary.');
-    }
-    return output;
+  if (userRequests.length >= RATE_LIMIT_COUNT) {
+    throw new Error('شما به حداکثر تعداد درخواست مجاز (۳ بار در ۱۰ دقیقه) رسیده‌اید. لطفاً کمی صبر کنید.');
   }
-);
+
+  // Add current request timestamp
+  userRequests.push(now);
+  requestTracker.set(ip, userRequests);
+
+  try {
+    // Call the API route
+    const response = await fetch('/api/summarize', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(input),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'خطا در ارتباط با سرور');
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Summarization error:', error);
+    throw new Error('خطا در خلاصه‌سازی متن. لطفاً دوباره تلاش کنید.');
+  }
+}
